@@ -92,17 +92,15 @@ def customer_can_afford_pet(customer, pet)
 end
 
 #-----(20-21-22 )----------------------{sell pet to customer found & not_found & insufficient_funds}-------------------
-p "out .. "
 
 def sell_pet_to_customer(pet_shop, pet, customer)
   return if (pet == nil)
-    p " ..In"
     pet_name = pet[:name]
     pet_price = pet[:price]
     return if !(customer_can_afford_pet(customer, pet))
       remove_customer_cash(customer, pet_price)
       add_or_remove_cash(pet_shop, pet_price)
       remove_pet_by_name(pet_shop, pet_name)
-      pet_shop[:admin][:pets_sold] += 1
+      increase_pets_sold(pet_shop, 1)
       add_pet_to_customer(customer,pet)
 end
